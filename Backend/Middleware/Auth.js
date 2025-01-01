@@ -2,8 +2,8 @@ import joi from "joi";
 
 export const signupValidation = (req, res, next) => {
   const schema = joi.object({
-    name: joi.string().min(3).max(30).required(),
-    email: joi.string().email().required(),
+    name: joi.string().trim().min(3).max(30).required(),
+    email: joi.string().trim().email().required(),
     password: joi.string().min(6).max(14).required(),
   });
   const { error } = schema.validate(req.body);
@@ -15,7 +15,7 @@ export const signupValidation = (req, res, next) => {
 
 export const loginValidation = (req, res, next) => {
   const schema = joi.object({
-    email: joi.string().email().required(),
+    email: joi.string().trim().email().required(),
     password: joi.string().min(6).max(14).required(),
   });
   const { error } = schema.validate(req.body);
